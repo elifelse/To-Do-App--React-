@@ -21,7 +21,9 @@ export class App extends Component {
           <button>Add</button>
         </form>
         <ul className="todos-list">
-          {this.state.tasks.map((value, index) =>
+          {this.state.tasks
+          .sort((a,b) => a.isDone == b.isDone ? a.task.localeCompare(b.task) : a.isDone - b.isDone)
+          .map((value, index) =>
             <li key={index} className={value.isDone ? "done" : "undone"}>
               <input type="checkbox" checked={value.isDone}
                 onChange={(e) => this.updateTodoStatus(e, index)} />
